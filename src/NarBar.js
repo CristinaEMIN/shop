@@ -1,26 +1,40 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import styled from "styled-components";
+import {ReactComponent as ShopLogo} from './VSF.svg';
+import {ReactComponent as CurrencySelector} from './CurrencySVG.svg';
 
 const NavBar = () => (
-    <nav>
-        <ul>
-            <li>
-                <Link to="/women">Women</Link>
-            </li>
-            <li>
-                <Link to="/men">Men</Link>
-            </li>
-            <li>
-                <Link to="/kids">Kids</Link>
-            </li>
-        </ul>
-    </nav>
+   <Navigation> 
+    <ul className="navigation">
+        <li>
+            <NavLink to="/women" activeClassName="active" className="label"><p className="label-text">Women</p></NavLink>
+        </li>
+        <li>
+            <NavLink to="/men" activeClassName="active" className="label"><p className="label-text">Men</p></NavLink>
+        </li>
+        <li>
+            <NavLink to="/kids" activeClassName="active" className="label"><p className="label-text">Kids</p></NavLink>
+        </li>
+    </ul>
+        
+    </Navigation>
+
 );
 
-// Create a Wrapper component that'll render a <section> tag with some styles
-const Wrapper = styled.section`
-  padding: 4em;
-  background: papayawhip;
+
+const Navigation = styled.nav`
+    /* Navigation */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    position: absolute;
+    width: 234px;
+    height: 56px;
+    left: 101px;
+    bottom: 0px;
 `;
 
 export default NavBar;

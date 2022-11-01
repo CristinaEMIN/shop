@@ -1,0 +1,104 @@
+/* header__navigation */
+nav ul.navigation
+    /* Auto layout */
+    display: flex
+    flex-direction: row
+    align-items: center
+    padding: 0px
+    margin: 0px
+    width: 234px
+    height: 56px
+    /* Inside auto layout */
+    flex: none
+    order: 0
+    flex-grow: 0
+
+    /* _Header / Elements / Desktop / Buttons */
+    li
+        /* Auto layout */
+        display: flex
+        flex-direction: row
+        align-items: flex-end
+        padding: 0px
+        width: auto
+        height: 56px
+        /* Inside auto layout */
+        flex: none
+        order: 0
+        flex-grow: 0
+
+    /* Label */
+    li .label
+        /* Auto layout */
+        display: flex
+        flex-direction: column
+        align-items: center
+        padding: 0px 16px
+        gap: 30px
+        //width: 65px
+        height: 52px
+        /* Inside auto layout */
+        flex: none
+        order: 1
+        flex-grow: 0
+        text-decoration: none
+        border-bottom: solid 2px rgba(255,255,255, 0)
+
+    li a.active
+        border-bottom: solid 2px $--c-primary
+
+    /* Label */
+    li a .label-text
+        height: 20px
+        font-family: 'Raleway'
+        font-style: normal
+        font-weight: 400
+        font-size: 16px
+        line-height: 120%
+        /* identical to box height, or 19px */
+        display: flex
+        align-items: center
+        text-align: center
+        text-transform: uppercase
+        /* --c-text */
+        color: #1D1F22
+        /* Inside auto layout */
+        flex: none
+        order: 0
+        flex-grow: 0
+        margin: 0px
+
+    li a.active .label-text
+        /* --c-primary */
+        color: $--c-primary
+        font-weight: 600
+
+/* header__actions */
+nav ul.actions
+    /* Auto layout */
+    display: flex
+    flex-direction: row
+    align-items: center
+    padding: 0px
+    margin: 0px
+    width: 234px
+    height: 56px
+    /* Inside auto layout */
+    flex: none
+    order: 0
+    flex-grow: 0
+
+    /* _Header / Elements / Desktop / Buttons */
+    li
+        /* Auto layout */
+        display: flex
+        flex-direction: row
+        align-items: center
+        padding: 0px
+        width: 40px
+        height: 40px
+        /* Inside auto layout */
+        flex: none
+        order: 0
+        flex-grow: 0
+        padding: 0px 10px

@@ -1,17 +1,15 @@
 import React  from 'react';
 import {BrowserRouter as Router, Routes,Route} from 'react-router-dom';
-import NavBar from './NarBar';
-import './App.css';
+import Header from './Header';
+import './App.scss';
 
 function App() {
   return (
     <Router>
-    <NavBar />
+    <Header />
     <div id='page-body'>
       <Routes>
-       
-  
-          
+        
       </Routes>
       </div>
   </Router>

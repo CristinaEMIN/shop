@@ -1,0 +1,119 @@
+/* Title */
+h1
+    position: absolute
+    width: 299px
+    height: 68px
+    left: 100px
+    top: 160px
+
+    /* Heading / Desktop / H2 */
+
+    font-family: Raleway
+    font-style: normal
+    font-weight: 400
+    font-size: 42px
+    line-height: 160%
+    text-transform: capitalize
+    /* identical to box height, or 67px */
+
+    display: flex
+    align-items: center
+
+    /* --c-text */
+
+    color: #1D1F22
+
+    &::first-letter
+        text-transform: uppercase
+
+.grid-container
+    position: absolute
+    left: 100px
+    top: 330px
+    width: 100%
+    display: grid
+    grid-template-columns: auto auto auto
+    grid-gap: 10px
+
+    padding: 10px
+
+/* Product Card - Desktop */
+.productCard
+    /* Auto layout */
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    padding: 0px
+    position: relative
+    width: 386px
+    height: 444px
+    text-decoration: none
+
+    /* Image */
+    img.productCardImg
+        width: 354px
+        height: 330px
+
+        /* Inside auto layout */
+        flex: none
+        order: 0
+        align-self: stretch
+        flex-grow: 0
+
+    /* Title */
+    h3.productName
+        width: 354px
+        height: 29px
+        margin: 0
+
+        font-family: Raleway
+        font-style: normal
+        font-weight: 300
+        font-size: 18px
+        line-height: 160%
+        /* identical to box height, or 29px */
+
+        display: flex
+        align-items: center
+
+        /* --c-black */
+
+        color: #1D1F22
+
+        /* Inside auto layout */
+
+        flex: none
+        order: 0
+        align-self: stretch
+        flex-grow: 0
+    /* Price */
+    p.productPrice
+        /* Auto layout */
+
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 58px
+        height: 29px
+        margin: 0
+
+        /* --price-regular-font */
+
+        font-family: Raleway
+        font-style: normal
+        font-weight: 500
+        font-size: 18px
+        line-height: 160%
+        /* identical to box height, or 29px */
+
+        text-align: right
+
+        /* --c-black */
+
+        color: #1D1F22
+
+        /* Inside auto layout */
+
+        flex: none
+        order: 0
+        flex-grow: 0

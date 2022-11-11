@@ -9,7 +9,7 @@ const ProductsList = ({ products }) => (
     
     
     return(
-        <Link className='product-list-item productCard' key= {key} to={`/${product.category}/${product.name}`}>
+        <Link className='product-list-item productCard' key= {key} to={`/${product.category}/${product.id}`}>
             
                 <img className="productCardImg" src={product.gallery[0]} />
                 <h3 className="productName">{product.name}</h3>

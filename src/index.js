@@ -4,6 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { Provider } from 'react-redux'
+import { configureStore } from './store';
+// import { persistStore } from 'redux-persist';
+// import { PersistGate } from 'redux-persist/lib/integration/react';
+
+const store = configureStore();
+// const persistor = persistStore(store);
 
 const client = new ApolloClient({
   uri: " http://localhost:4000",
@@ -13,9 +20,17 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+   
      <ApolloProvider client={client}>
-        <App />
+        <Provider store={store}>
+          {/* <PersistGate
+            loading={<div>Loading...</div>}
+            persistor={persistor}> */}
+              <App />
+          {/* </PersistGate> */}
+        </Provider>
      </ApolloProvider>
+    
     
   </React.StrictMode>
 );

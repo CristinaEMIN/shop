@@ -26,10 +26,6 @@ query PRODUCTS_QUERY($title: String!){
 `;
 
 
-
-
-
-
 const ProductsListPage = () => {
     let params = useParams();
     const categoryname = params.categoryname;
@@ -49,7 +45,7 @@ if (error) return <pre>{error.message}</pre>
 
     return(
         <>
-        <h1>{categoryname}</h1>
+        <h1 className='productCategoryName'>{categoryname}</h1>
         <div className="grid-container">
             <ProductsList products={data.category.products}/>
         </div>

@@ -30,14 +30,17 @@ const ProductForm = ({product}) => {
     return(
         <>
         
-            <form>
+            <form className="productDetailsForm">
             {product.attributes.map((attribute) => {
                 switch(attribute.name) {
                     case 'Size':
                         return (
-                            <label>
-                            {attribute.name}:
-                                        <div>
+                            <label >
+                                <span className="labelName"> 
+                                {attribute.name}:
+                                </span>
+                            
+                                        <div className="attributesValues">
                                         {attribute.items.map((item) => (
                                             <label className="labelSize">
                                                 <input type="radio" value={item.displayValue} name="size"/>
@@ -55,13 +58,19 @@ const ProductForm = ({product}) => {
                     case 'Color':
                         return (
                             <label>
+                                <span className="labelName">
                                 {attribute.name}:
-                                <select >
+                                </span>
+                               
+                                <div className="attributesValues">
                                     {attribute.items.map((item) => (
-                                        <option value={item.displayValue}>{item.displayValue}</option>
+                                        <label className="labelColor">
+                                            <input type="radio" value={item.displayValue} name="color"/>
+                                            <span className="checkmark">{item.displayValue}</span>
+                                        </label>
                                     ))}
                                     
-                                </select>
+                                </div>
                                 
                             </label>
                         );
@@ -69,7 +78,10 @@ const ProductForm = ({product}) => {
                     case 'Capacity':
                             return (
                                 <label>
+                                    <span className="labelName">
                                     {attribute.name}:
+                                    </span>
+                                    
                                     <select >
                                         {attribute.items.map((item) => (
                                             <option value={item.displayValue}>{item.displayValue}</option>
@@ -83,7 +95,10 @@ const ProductForm = ({product}) => {
                     default:
                         return(
                             <label>
-                            {attribute.name}:
+                                <span className="labelName">
+                                {attribute.name}:
+                                </span>
+                           
                                 <input type="text" name="name" />
                             </label>)
                 }

@@ -1,8 +1,32 @@
+form.productDetailsForm
+    margin-top: 43px
+    margin-bottom: 40px
+
+    label
+        display: inline-block
+        margin-bottom: 24px
+
+.labelName
+    width: 38px
+    height: 18px
+    font-family: 'Roboto Condensed'
+    font-style: normal
+    font-weight: 700
+    font-size: 18px
+    text-transform: uppercase
+    line-height: 18px
+    align-items: center
+    text-align: center
+    color: #1D1F22
+
+.attributesValues
+    margin-top: 8px
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    grid-auto-rows: 1fr
+
 .labelSize
-
-    position: relative
-
-    padding-left: 35px
+    padding-right: 12px
     margin-bottom: 12px
     cursor: pointer
     font-size: 22px
@@ -20,17 +44,21 @@
     width: 0
 
 /* Create a custom checkbox */
-.checkmark
-    display: inline-block
+.labelSize .checkmark
     width: 63px
     height: 45px
     background-color: #fff
-    border: 2px black solid
+    border: 1px black solid
     font-family: 'Source Sans Pro'
     font-style: normal
     font-weight: 400
     font-size: 16px
     line-height: 18px
+    align-items: center
+    text-align: center
+    display: grid
+    letter-spacing: 0.05em
+    color: #1D1F22
 
 /* On mouse-over, add a grey background color */
 .labelSize:hover input ~ .checkmark
@@ -38,26 +66,49 @@
 
 /* When the checkbox is checked, add a blue background */
 .labelSize input:checked ~ .checkmark
-    background-color: #002B4E
+    background-color: #1D1F22
+    color: #fff
 
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after
-    content: ""
+.labelColor
+    padding-right: 12px
+    margin-bottom: 12px
+    cursor: pointer
+    font-size: 22px
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+
+/* Hide the browser's default checkbox */
+.labelColor input
     position: absolute
-    display: none
+    opacity: 0
+    cursor: pointer
+    height: 0
+    width: 0
 
-/* Show the checkmark when checked */
-.labelSize input:checked ~ .checkmark:after
-    display: block
+/* Create a custom checkbox */
+.labelColor .checkmark
+    width: 32px
+    height: 32px
+    background-color: #fff
+    border: 1px black solid
+    font-family: 'Source Sans Pro'
+    font-style: normal
+    font-weight: 400
+    font-size: 16px
+    line-height: 18px
+    align-items: center
+    text-align: center
+    display: grid
+    letter-spacing: 0.05em
+    color: #1D1F22
 
-/* Style the checkmark/indicator */
-.labelSize .checkmark:after
-    left: 6px
-    top: 3px
-    width: 5px
-    height: 8px
-    border: solid white
-    border-width: 0 2px 2px 0
-    -webkit-transform: rotate(35deg)
-    -ms-transform: rotate(35deg)
-    transform: rotate(35deg)
+/* On mouse-over, add a grey background color */
+.labelColor:hover input ~ .checkmark
+    background-color: #ccc
+
+/* When the checkbox is checked, add a blue background */
+.labelColor input:checked ~ .checkmark
+    background-color: #1D1F22
+    color: #fff

@@ -1,7 +1,8 @@
 import React from "react";
+import styled from "styled-components";
 import parse from 'html-react-parser';
 import DOMPurify from 'dompurify';
-import styled from "styled-components";
+import ProductFormFields from "./ProductFormFields";
 
 const Button = styled.input`
     /* _Button / Elements / Common */
@@ -26,88 +27,23 @@ const Button = styled.input`
 
 const ProductForm = ({product}) => {
 
+    const htmlFrom = (htmlString) => {
+        const cleanHtmlString = DOMPurify.sanitize(htmlString,
+          { USE_PROFILES: { html: true } });
+        const html = parse(cleanHtmlString);
+        return html;
+    }
+
 
     return(
         <>
-        
+        <div className="productDetails"> 
             <form className="productDetailsForm">
-            {product.attributes.map((attribute) => {
-                switch(attribute.name) {
-                    case 'Size':
-                        return (
-                            <label >
-                                <span className="labelName"> 
-                                {attribute.name}:
-                                </span>
-                            
-                                        <div className="attributesValues">
-                                        {attribute.items.map((item) => (
-                                            <label className="labelSize">
-                                                <input type="radio" value={item.displayValue} name="size"/>
-                                                <span className="checkmark">{item.displayValue}</span>
-                                            </label>
-                                            
-                                            
-                                        ))}
-                                        </div>
-                                   
-                                    
-                                </label>
-                            );
-                            break;
-                    case 'Color':
-                        return (
-                            <label>
-                                <span className="labelName">
-                                {attribute.name}:
-                                </span>
-                               
-                                <div className="attributesValues">
-                                    {attribute.items.map((item) => (
-                                        <label className="labelColor">
-                                            <input type="radio" value={item.displayValue} name="color"/>
-                                            <span className="checkmark">{item.displayValue}</span>
-                                        </label>
-                                    ))}
-                                    
-                                </div>
-                                
-                            </label>
-                        );
-                        break;
-                    case 'Capacity':
-                            return (
-                                <label>
-                                    <span className="labelName">
-                                    {attribute.name}:
-                                    </span>
-                                    
-                                    <select >
-                                        {attribute.items.map((item) => (
-                                            <option value={item.displayValue}>{item.displayValue}</option>
-                                        ))}
-                                        
-                                    </select>
-                                    
-                                </label>
-                            );
-                            break;
-                    default:
-                        return(
-                            <label>
-                                <span className="labelName">
-                                {attribute.name}:
-                                </span>
-                           
-                                <input type="text" name="name" />
-                            </label>)
-                }
-
-             
-        }
-            )}
+                <ProductFormFields product={product} />
                 <Button type="submit" value="Add to cart" />
             </form>
+            <div className="productDescription">{htmlFrom(product.description)}</div>
+        </div>
             
 
         </>

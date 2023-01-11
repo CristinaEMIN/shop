@@ -5,7 +5,7 @@ const AttributesSelector = ({attributes}) => {
 
 
     return(
-        <>
+        <div className="productAttributes">
         
         {attributes.map((attribute) => {
             switch(attribute.name) {
@@ -97,7 +97,7 @@ const AttributesSelector = ({attributes}) => {
         )}
             
 
-        </>
+        </div>
     );
 
 

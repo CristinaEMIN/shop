@@ -1,5 +1,6 @@
 import React from "react";
 import AttributesSelector from "./AttributesSelector";
+import PriceFormat from "./PriceFormat";
 
 
 
@@ -25,13 +26,7 @@ const ProductFormFields = ({product}) => {
             <AttributesSelector attributes={product.attributes} />
 
            
-            <label className="productPrice" >
-                    <span className="labelName">
-                                Price:
-                                </span>
-                <input type="hidden" value={product.prices[0].amount} name="price"/>
-                {product.prices[0].currency.symbol}{product.prices[0].amount}
-            </label>
+            <PriceFormat currencyIndex={0} prices={product.prices}/>
     
            
             

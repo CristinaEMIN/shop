@@ -4,6 +4,27 @@ import { useQuery, gql } from "@apollo/client";
 import ProductsList from '../components/ProductsList';
 
 
+// const PRODUCTS_QUERY = gql`
+// query PRODUCTS_QUERY($title: String!){
+//   category(input: {title: $title }){
+//     products{
+//         id
+//         name
+//         category
+//         gallery
+//         prices{  
+//             amount
+//             currency{
+//             label
+//             symbol
+//                 }
+//             }   
+//         }
+      
+//     }
+// }
+// `;
+
 const PRODUCTS_QUERY = gql`
 query PRODUCTS_QUERY($title: String!){
   category(input: {title: $title }){
@@ -11,6 +32,17 @@ query PRODUCTS_QUERY($title: String!){
         id
         name
         category
+        inStock
+        description
+        attributes{
+            name
+            type
+            items{
+            displayValue
+            value
+            }
+        }
+        brand
         gallery
         prices{  
             amount
@@ -18,12 +50,12 @@ query PRODUCTS_QUERY($title: String!){
             label
             symbol
                 }
-            }   
-        }
-      
+        }   
     }
+  }
 }
 `;
+
 
 
 const ProductsListPage = () => {
@@ -35,7 +67,9 @@ const ProductsListPage = () => {
 const { data, loading, error } = useQuery(PRODUCTS_QUERY, { 
     variables: {
         title: categoryname    
-        }
+        },
+        fetchPolicy: 'cache-and-network',
+        nextFetchPolicy: 'cache-first',
     });
 
 

@@ -26,7 +26,7 @@ const ProductFormFields = ({product}) => {
             <AttributesSelector attributes={product.attributes} />
 
            
-            <PriceFormat currencyIndex={0} prices={product.prices}/>
+            <PriceFormat prices={product.prices}/>
     
            
             

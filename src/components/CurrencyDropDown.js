@@ -1,49 +1,43 @@
-import React, { useState } from "react";
-import Dropdown from "./DropDown";
-import { useQuery, gql } from "@apollo/client";
+import { useState, useCallback } from "react";
+// import { useQuery, gql } from "@apollo/client";
 import {ReactComponent as CurrencySelector} from '../CurrencySVG.svg';
-
-const CURRENCY_QUERY = gql`
-{
-  currencies{
-      label, 
-    	symbol
-      }   
-}
-`;
+import CurrencyCodePicker from "./CurrencyCodePicker";
 
 
-const CuurencyDropDown = () => {
-    const [open, setOpen] = React.useState(false);
-  
-    const handleOpen = () => {
-    setOpen(!open);
-    };
+// const CURRENCY_QUERY = gql`
+// {
+//   currencies{
+//       label, 
+//     	symbol
+//       }   
+// }
+// `;
 
-    const { data, loading, error } = useQuery(CURRENCY_QUERY);
 
-    if (loading) return "Loading...";
-    if (error) return <pre>{error.message}</pre>
-
+const CurencyDropDown = () => {
  
   
-    
-    var menu = [];
-    data.currencies.map((currencie,index) => {
-        menu[index]= currencie.symbol + ' ' + currencie.label;
+    const content = (
+            
+               <CurrencyCodePicker />
+          
+    )
 
-    })
-  
-    return (
-      <Dropdown
-        open={open}
-        trigger={<button onClick={handleOpen}><CurrencySelector /></button>}
-        menu={ menu}
-        nameofClass = "currencyDropDown"
-      />
-    );
+    
+   
+
+    
+   
+    return content;
+           
   };
 
-  export default CuurencyDropDown;
+
+
+
+
+
+export default CurencyDropDown;
+
   
  

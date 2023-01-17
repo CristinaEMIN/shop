@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PriceFormat from "./PriceFormat";
 
 const ProductsList = ({ products }) => (
     <>
@@ -13,7 +14,8 @@ const ProductsList = ({ products }) => (
             
                 <img className="productCardImg" src={product.gallery[0]} />
                 <h3 className="productName">{product.name}</h3>
-                <p className="productPrice">{product.prices[0].currency.symbol}{product.prices[0].amount}</p>
+                {/* <p className="productPrice">{product.prices[0].currency.symbol}{product.prices[0].amount}</p> */}
+                <PriceFormat  prices={product.prices}/>
             
         </Link>
       )

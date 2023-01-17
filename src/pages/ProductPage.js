@@ -95,17 +95,17 @@ const product = client.readFragment({
     fragment: PRODUCT_FRAGMENT,  
     
     });
-if (product == 'null') {
-    const { data, loading, error } = useQuery(PRODUCT_QUERY, { 
-    variables: {
-        id: productId
-        }
-    });
+// if (product == 'null') {
+//     const { data, loading, error } = useQuery(PRODUCT_QUERY, { 
+//     variables: {
+//         id: productId
+//         }
+//     });
 
-    if (loading) return "Loading...";
-    if (error) return <pre>{error.message}</pre>
-    if (data) product =data.product; 
-}
+//     if (loading) return "Loading...";
+//     if (error) return <pre>{error.message}</pre>
+//     if (data) product =data.product; 
+// }
     console.log(product)
 
 

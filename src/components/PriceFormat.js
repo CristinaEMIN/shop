@@ -1,9 +1,22 @@
-import React from "react";
+import {useEffect, useState}  from "react";
+import { connect } from 'react-redux';
+import {
+  getCurrenciesSelectedIndex,
+} from './selectors';
 
 
 
-const PriceFormat = ({currencyIndex, prices}) => {
 
+
+const PriceFormat = ({prices, currencieSelectedIndex}) => {
+
+    const [currencyIndex, setcurrencyIndex] = useState(currencieSelectedIndex);
+    useEffect(() => {
+        setcurrencyIndex(currencieSelectedIndex);
+        console.log("aici");
+        console.log(currencyIndex)
+      }, [currencieSelectedIndex]);
+    
    
 
 
@@ -27,4 +40,13 @@ const PriceFormat = ({currencyIndex, prices}) => {
    
 
 
-export default PriceFormat  ;
+
+
+const mapStateToProps = state => ({
+   
+    currencieSelectedIndex: getCurrenciesSelectedIndex(state),
+   
+});
+
+
+export default connect(mapStateToProps)( PriceFormat);

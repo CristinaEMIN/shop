@@ -104,19 +104,38 @@ nav ul.actions
         padding: 0px 10px
 
 /* Currency Selector */
-.currencySelector button
+.currencySelector select
     border: none
     background: none
+    font-size: 18px
+    max-width: 45px
 
-.currencyDropDown
-    position: absolute
-    padding: 0
-    width: 114px
-    background: #FFFFFF
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px
-    z-index: 300
+    .currencySymbol
+        display: block
+        width: 60px
+        height: 20px
+        background-color: rgb(209, 173, 95)
+        border: 5px solid rgb(47, 0, 255)
 
-    li.menu-item
+    &:focus
+
+        option
+            border: none
+            position: absolute
+            padding: 0
+            width: 114px
+            background: #FFFFFF
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px
+            z-index: 300
+
+        .currencySymbol
+            display: block
+            width: 60px
+            height: 20px
+            background: rgb(209, 173, 95)
+            border: 5px solid rgb(47, 0, 255)
+
+    option
         width: 114px
         height: 45px
         position: relative
@@ -128,6 +147,12 @@ nav ul.actions
         line-height: 160%
         /* identical to box height, or 29px */
 
-        text-align: right
+        text-align: center
 
         color: #1D1F22
+
+        &:checked
+            display: none
+
+        &:focus
+            background-color: grey

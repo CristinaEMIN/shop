@@ -74,6 +74,7 @@ fragment CurrentProduct on Product{
 
 const ProductPage = () => {
 
+    const [fetchedProducts, setFetchedProducts] = useState(false);
     let params = useParams();
     const productId = params.productId;
 
@@ -90,25 +91,29 @@ const ProductPage = () => {
 // if (error) return <pre>{error.message}</pre>
 
 const client = useApolloClient();
-const product = client.readFragment({
+let product = client.readFragment({
     id: `Product:`+productId,
     fragment: PRODUCT_FRAGMENT,  
     
     });
-// if (product == 'null') {
-//     const { data, loading, error } = useQuery(PRODUCT_QUERY, { 
-//     variables: {
-//         id: productId
-//         }
-//     });
+    useEffect (() => {
+        if(product) setFetchedProducts(true);
+    },[product])
 
-//     if (loading) return "Loading...";
-//     if (error) return <pre>{error.message}</pre>
-//     if (data) product =data.product; 
-// }
-    console.log(product)
+console.log(fetchedProducts)
 
-
+const { data, loading, error } = useQuery(PRODUCT_QUERY, { 
+variables: {
+    id: productId
+    }
+},
+{enabled: !fetchedProducts}
+);
+if(!fetchedProducts){
+        if (loading) return "Loading...";
+        if (error) return <pre>{error.message}</pre>
+        if (data) product =data.product; 
+}
 
     return(
         <ProductDescriptionWrapper>

@@ -1,17 +1,23 @@
-export const LOAD_CATEGORIES_IN_PROGRESS = 'LOAD_CATEGORIES_IN_PROGRESS';
-export const loadCategoriesInProgress = () => ({
-    type: LOAD_CATEGORIES_IN_PROGRESS,
+export const LOAD_CART_IN_PROGRESS = 'LOAD_CART_IN_PROGRESS';
+export const loadCartInProgress = () => ({
+    type: LOAD_CART_IN_PROGRESS,
 });
 
-export const LOAD_CATEGORIES_SUCCESS = 'LOAD_CATEGORIES_SUCCESS';
-export const loadCategoriesSuccess = categories => ({
-    type: LOAD_CATEGORIES_SUCCESS,
-    payload: { categories },
+export const LOAD_CART_SUCCESS = 'LOAD_CART_SUCCESS';
+export const loadCartSuccess = cart => ({
+    type: LOAD_CART_SUCCESS,
+    payload: { cart },
 });
 
-export const LOAD_CATEGORIES_FAILURE = 'LOAD_CATEGORIES_FAILURE';
-export const loadCategoriesFailure = () => ({
-    type: LOAD_CATEGORIES_FAILURE,
+export const LOAD_CART_FAILURE = 'LOAD_CART_FAILURE';
+export const loadCartFailure = () => ({
+    type: LOAD_CART_FAILURE,
+});
+
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const addToCart = item => ({
+    type: ADD_TO_CART,
+    payload: { item },
 });
 
 export const LOAD_CURRENCIES_IN_PROGRESS = 'LOAD_CURRENCIES_IN_PROGRESS';

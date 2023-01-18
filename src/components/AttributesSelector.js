@@ -1,7 +1,8 @@
 import React from "react";
 
 
-const AttributesSelector = ({attributes}) => {
+const AttributesSelector = ({attributes, handleInputChange}) => {
+
 
 
     return(
@@ -19,7 +20,7 @@ const AttributesSelector = ({attributes}) => {
                                     <div className="attributesValues">
                                     {attribute.items.map((item) => (
                                         <label className="labelSize">
-                                            <input type="radio" value={item.value} name="size"/>
+                                            <input type="radio" value={item.value} name="size" onChange={handleInputChange}/>
                                             <span className="checkmark">{item.displayValue}</span>
                                         </label>
                                         
@@ -41,7 +42,7 @@ const AttributesSelector = ({attributes}) => {
                             <div className="attributesValues">
                                 {attribute.items.map((item) => (
                                     <label className="labelColor" >
-                                        <input type="radio" value={item.value} name="color"/>
+                                        <input type="radio" value={item.value} name="color" onChange={handleInputChange}/>
                                         <span className="checkmark" style={{backgroundColor: `${item.value}`}} ></span>
                                     </label>
                                 ))}
@@ -61,7 +62,7 @@ const AttributesSelector = ({attributes}) => {
                                 <div className="attributesValues">
                                     {attribute.items.map((item) => (
                                         <label className="labelSize" >
-                                            <input type="radio" value={item.value} name="capacity"/>
+                                            <input type="radio" value={item.value} name="capacity" onChange={handleInputChange}/>
                                             <span className="checkmark" style={{backgroundColor: `${item.value}`}} > {item.displayValue}</span>
                                         </label>
                                     ))}
@@ -81,7 +82,7 @@ const AttributesSelector = ({attributes}) => {
                                 <div className="attributesValues">
                                     {attribute.items.map((item) => (
                                         <label className="labelSize" >
-                                            <input type="radio" value={item.value} name= {attribute.name} />
+                                            <input type="radio" value={item.value} name= {attribute.name} onChange={handleInputChange} />
                                             <span className="checkmark" style={{backgroundColor: `${item.value}`}} > {item.displayValue}</span>
                                         </label>
                                     ))}

@@ -13,8 +13,7 @@ const PriceFormat = ({prices, currencieSelectedIndex}) => {
     const [currencyIndex, setcurrencyIndex] = useState(currencieSelectedIndex);
     useEffect(() => {
         setcurrencyIndex(currencieSelectedIndex);
-        console.log("aici");
-        console.log(currencyIndex)
+        
       }, [currencieSelectedIndex]);
     
    

@@ -6,7 +6,7 @@ const ProductsList = ({ products }) => (
     <>
   
     {products.map((product , key) => {
-       console.log(product)
+      
     
     
     return(

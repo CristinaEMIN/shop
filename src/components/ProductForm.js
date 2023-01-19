@@ -1,4 +1,4 @@
-import {useCallback, useReducer} from "react";
+import {useCallback, useReducer, useState} from "react";
 import { connect } from 'react-redux';
 import styled from "styled-components";
 import parse from 'html-react-parser';
@@ -64,12 +64,21 @@ const ProductForm = ({product, cart, addToCart}) => {
     //     return filteredArray.length > 0 ? true : false;
     //   };
 
+    var resetInputs = false;
+
     const handleAddtoCart = e => {
         e.preventDefault();
-        console.log(cart.length)
+       
+
+        //reset all selected inputs
+        e.target.reset();
+       
+
+        //determine if a product is already in cart
         var increaseQuntity = false;
         if(cart.length >0){
             cart.map(item => {
+                //compare attributes against all for the product
                var itemInCart = compareObjectExeceptKey(item, attributesOfSelectedProduct, 'quantity')
                 if(itemInCart) {
                     item.quantity +=1;
@@ -88,16 +97,6 @@ const ProductForm = ({product, cart, addToCart}) => {
           
         }
         
-        
-        // console.log(increaseQuntity);
-        // if(increaseQuntity == false){
-        //     addToCart(attributesOfSelectedProduct)
-        // } else {
-        //     console.log(cart.findIndex(item => item.id == product.id))
-        //     cart[cart.findIndex(item => item.id == product.id)].quantity += 1;
-        // }
-       
-        
         /* clear state */
         dispatch({ type: "reset" });
       };
@@ -106,11 +105,18 @@ const ProductForm = ({product, cart, addToCart}) => {
     const handleInputChange = useCallback(
 
         (e) => {
-            const { name, value } = e.target;
+            console.log(e.target)
+            const { name, value  } = e.target;
             dispatch({ type: name, value });
+            
         },
         []
       );
+
+     
+
+
+    
 
       
 
@@ -119,7 +125,7 @@ const ProductForm = ({product, cart, addToCart}) => {
         <>
         <div className="productDetails"> 
             <form className="productDetailsForm" onSubmit={handleAddtoCart} >
-                <ProductFormFields product={product} handleInputChange={handleInputChange}/>
+                <ProductFormFields product={product} handleInputChange={handleInputChange} />
                 <Button type="submit" value="Add to cart" />
             </form>
             <div className="productDescription">{htmlFrom(product.description)}</div>

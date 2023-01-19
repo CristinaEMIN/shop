@@ -4,7 +4,7 @@ import PriceFormat from "./PriceFormat";
 
 
 
-const ProductFormFields = ({product, handleInputChange}) => {
+const ProductFormFields = ({product, handleInputChange, getRadioProps}) => {
 
   
     

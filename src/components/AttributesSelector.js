@@ -1,9 +1,29 @@
-import React from "react";
+import {useState, useCallback, useEffect, useRef} from "react";
 
 
 const AttributesSelector = ({attributes, handleInputChange}) => {
 
+    const checkboxRef = useRef();
 
+    const getRadioProps = useCallback((name, value) => {
+        return {
+          name,
+          value,
+          type: "radio",
+        //   ref: checkboxRef,
+          onClick: handleInputChange,
+                           
+
+        };
+      }, []);
+
+
+    // useEffect(() => {
+    //         if (checkboxRef) {
+    //             checkboxRef.current.addEventListener('click', handleInputChange, false);
+    //         }
+    //     }, []);
+    
 
     return(
         <div className="productAttributes">
@@ -20,7 +40,8 @@ const AttributesSelector = ({attributes, handleInputChange}) => {
                                     <div className="attributesValues">
                                     {attribute.items.map((item) => (
                                         <label className="labelSize">
-                                            <input type="radio" value={item.value} name="size" onChange={handleInputChange}/>
+                                            {/* <input type="radio" value={item.value} name="size" onChange={handleInputChange}/> */}
+                                            <input {...getRadioProps("size", item.value )} />
                                             <span className="checkmark">{item.displayValue}</span>
                                         </label>
                                         
@@ -42,7 +63,8 @@ const AttributesSelector = ({attributes, handleInputChange}) => {
                             <div className="attributesValues">
                                 {attribute.items.map((item) => (
                                     <label className="labelColor" >
-                                        <input type="radio" value={item.value} name="color" onChange={handleInputChange}/>
+                                        {/* <input type="radio" value={item.value} name="color" onChange={handleInputChange}/> */}
+                                        <input {...getRadioProps("color", item.value )} />
                                         <span className="checkmark" style={{backgroundColor: `${item.value}`}} ></span>
                                     </label>
                                 ))}
@@ -62,7 +84,8 @@ const AttributesSelector = ({attributes, handleInputChange}) => {
                                 <div className="attributesValues">
                                     {attribute.items.map((item) => (
                                         <label className="labelSize" >
-                                            <input type="radio" value={item.value} name="capacity" onChange={handleInputChange}/>
+                                            {/* <input type="radio" value={item.value} name="capacity" onChange={handleInputChange}/> */}
+                                            <input {...getRadioProps("capacity", item.value )} />
                                             <span className="checkmark" style={{backgroundColor: `${item.value}`}} > {item.displayValue}</span>
                                         </label>
                                     ))}
@@ -82,7 +105,8 @@ const AttributesSelector = ({attributes, handleInputChange}) => {
                                 <div className="attributesValues">
                                     {attribute.items.map((item) => (
                                         <label className="labelSize" >
-                                            <input type="radio" value={item.value} name= {attribute.name} onChange={handleInputChange} />
+                                            {/* <input type="radio" value={item.value} name= {attribute.name} onChange={handleInputChange} /> */}
+                                            <input {...getRadioProps(attribute.name, item.value )} />
                                             <span className="checkmark" style={{backgroundColor: `${item.value}`}} > {item.displayValue}</span>
                                         </label>
                                     ))}

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
-import CuurencyDropDown from "./components/CurrencyDropDown";
-import {ReactComponent as EmptyCart} from './EmptyCart.svg';
+import CurrencyCodePicker from "./components/CurrencyCodePicker";
+import Cart from "./components/Cart";
 
 const ActionsBar = () => (
    <Actions>
@@ -12,10 +12,10 @@ const ActionsBar = () => (
                 <li>
                 </li>
                 <li className="currencySelector">
-                    <CuurencyDropDown />
+                    <CurrencyCodePicker />
                 </li>
                 <li>
-                    <EmptyCart />
+                    <Cart />
                 </li>
             </ul>
     </Actions>

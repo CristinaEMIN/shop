@@ -3,6 +3,7 @@ import {
     LOAD_CART_SUCCESS,
     LOAD_CART_FAILURE,
     ADD_TO_CART,
+    UPDATE_ITEM_IN_CART,
     LOAD_CURRENCIES_IN_PROGRESS,
     LOAD_CURRENCIES_SUCCESS,
     LOAD_CURRENCIES_FAILURE,
@@ -39,6 +40,18 @@ export const cart = (state = initialState, action) => {
             ...state,
             isLoading: false,
             data:  state.data.concat(item),
+        };
+    }
+    case UPDATE_ITEM_IN_CART: {
+        const { item: updatedItem } = payload;
+        return {
+            ...state,
+            data: state.data.map(item => {
+                if (item.cartId === updatedItem.cartId) {
+                    return updatedItem;
+                }
+                return item;
+            }),
         };
     }
     default:

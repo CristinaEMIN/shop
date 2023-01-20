@@ -20,6 +20,12 @@ export const addToCart = item => ({
     payload: { item },
 });
 
+export const UPDATE_ITEM_IN_CART = 'UPDATE_ITEM_IN_CART';
+export const updateItemInCart = item => ({
+    type: UPDATE_ITEM_IN_CART,
+    payload: { item },
+});
+
 export const LOAD_CURRENCIES_IN_PROGRESS = 'LOAD_CURRENCIES_IN_PROGRESS';
 export const loadCurrenciesInProgress = () => ({
     type: LOAD_CURRENCIES_IN_PROGRESS,

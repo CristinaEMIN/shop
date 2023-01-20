@@ -4,6 +4,7 @@ import Header from './Header';
 import './App.scss';
 import ProductsListPage from './pages/ProductsListPage';
 import ProductPage from './pages/ProductPage';
+import CartPage from './pages/CartPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
            
             <Route path="/:categoryname" element={<ProductsListPage />} exact />
             <Route path="/:categoryname/:productId" element={<ProductPage />} exact />
+            <Route path="/cart" element={<CartPage />} exact />
       </Routes>
       </div>
   </Router>

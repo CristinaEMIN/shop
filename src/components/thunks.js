@@ -3,10 +3,12 @@ import {
     loadCartSuccess,
     loadCartFailure,
     addToCart,
+    updateItemInCart,
     loadCurrenciesInProgress,
     loadCurrenciesSuccess,
     loadCurrenciesFailure,
-    setCurrenciesSelected
+    setCurrenciesSelected,
+    
 } from './actions';
 
 
@@ -26,7 +28,18 @@ export const loadCart= () => async dispatch => {
 
 export const addNewItemToCart = item => async dispatch => {
     try {
+        item.cartId = Math.floor(Math.random() * 100) + 1;
         dispatch(addToCart(item));
+    
+    } catch (e) {
+        dispatch(loadCartFailure());
+        dispatch(displayAlert(e));
+    }
+}
+
+export const updateItem = item => async dispatch => {
+    try {
+        dispatch(updateItemInCart(item));
     
     } catch (e) {
         dispatch(loadCartFailure());

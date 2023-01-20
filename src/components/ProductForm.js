@@ -4,8 +4,8 @@ import styled from "styled-components";
 import parse from 'html-react-parser';
 import DOMPurify from 'dompurify';
 import ProductFormFields from "./ProductFormFields";
-import { getCart } from "./selectors";
-import { addNewItemToCart } from "./thunks";
+import { getCart, getCartQuntity } from "./selectors";
+import { addNewItemToCart, updateItem } from "./thunks";
 import { compareObjectExeceptKey } from "./functions";
 
 const Button = styled.input`
@@ -31,7 +31,7 @@ const Button = styled.input`
 
 
 
-const ProductForm = ({product, cart, addToCart}) => {
+const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem}) => {
 
     const htmlFrom = (htmlString) => {
         const cleanHtmlString = DOMPurify.sanitize(htmlString,
@@ -79,13 +79,18 @@ const ProductForm = ({product, cart, addToCart}) => {
         if(cart.length >0){
             cart.map(item => {
                 //compare attributes against all for the product
-               var itemInCart = compareObjectExeceptKey(item, attributesOfSelectedProduct, 'quantity')
-                if(itemInCart) {
+                const exceptKeys = ['cartId','quantity']
+               var itemInCart = compareObjectExeceptKey(item, attributesOfSelectedProduct, exceptKeys)
+              
+               if(itemInCart) {
                     item.quantity +=1;
-                    increaseQuntity = true 
+                    increaseQuntity = true ;
+                    console.log("addadaad")
+console.log(item)
+                    updateSelectedItem(item)
                 } 
             }) 
-            console.log(increaseQuntity)
+            
             if(!increaseQuntity) {
                 addToCart(attributesOfSelectedProduct);
                
@@ -96,7 +101,7 @@ const ProductForm = ({product, cart, addToCart}) => {
             addToCart(attributesOfSelectedProduct)
           
         }
-        
+        console.log(cartQuntity)
         /* clear state */
         dispatch({ type: "reset" });
       };
@@ -105,7 +110,7 @@ const ProductForm = ({product, cart, addToCart}) => {
     const handleInputChange = useCallback(
 
         (e) => {
-            console.log(e.target)
+           
             const { name, value  } = e.target;
             dispatch({ type: name, value });
             
@@ -139,12 +144,14 @@ const ProductForm = ({product, cart, addToCart}) => {
     }
    
     const mapStateToProps = state => ({
-        cart: getCart(state)
+        cart: getCart(state),
+        cartQuntity: getCartQuntity(state)
        
     });
     
     const mapDispatchToProps = dispatch => ({
       addToCart: item => dispatch(addNewItemToCart(item)),
+      updateSelectedItem: item => dispatch(updateItem(item)),
       
     });
     

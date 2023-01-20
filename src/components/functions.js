@@ -2,11 +2,17 @@ const isObject = (obj) => {
     return (Object.prototype.toString.call(obj) === '[object Object]');
 }
 
-export function compareObjectExeceptKey(obj1, obj2, exceptKey){
+
+export function compareObjectExeceptKey(object1, object2, exceptKeys){
    
-    if(!isObject(obj1) || !isObject(obj2)){
+    if(!isObject(object1) || !isObject(object2)){
         return false;
     }
+
+    let exclude = new Set(exceptKeys)
+    let obj1 =  Object.fromEntries(Object.entries(object1).filter(e => !exclude.has(e[0])))
+    let obj2 =  Object.fromEntries(Object.entries(object2).filter(e => !exclude.has(e[0])))
+   
 
     let len = null;
     //check if they're of thesame length
@@ -18,17 +24,11 @@ export function compareObjectExeceptKey(obj1, obj2, exceptKey){
 
     let match = 0; //store number of matched properties
     Object.keys(obj1).forEach(i => {
-       
-        if (i == exceptKey){
-            match++;
-           
-        } else {
-            //check if values with the same keys are equal
-            if(obj1[i] === obj2[i]){
-                match++; //increment the variable
-            }
-        }
-    })
+        //check if values with the same keys are equal
+        if(obj1[i] === obj2[i]){
+        match++; //increment the variable
+    } }
+        )
     //check if object length equals the number of matched properties
     if(match === len){
         return true;

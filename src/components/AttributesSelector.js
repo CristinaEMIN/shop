@@ -5,7 +5,7 @@ const AttributesSelector = ({attributes, handleInputChange}) => {
 
     const checkboxRef = useRef();
 
-    const getRadioProps = useCallback((name, value) => {
+    const getRadioProps = useCallback(( name, value) => {
         return {
           name,
           value,
@@ -28,18 +28,18 @@ const AttributesSelector = ({attributes, handleInputChange}) => {
     return(
         <div className="productAttributes">
         
-        {attributes.map((attribute) => {
+        {attributes.map((attribute, key) => {
             switch(attribute.name) {
                 case 'Size':
                     return (
-                        <label >
+                        <label key={key}>
                             <span className="labelName"> 
                             {attribute.name}:
                             </span>
                         
                                     <div className="attributesValues">
-                                    {attribute.items.map((item) => (
-                                        <label className="labelSize">
+                                    {attribute.items.map((item, key) => (
+                                        <label key={key} className="labelSize">
                                             {/* <input type="radio" value={item.value} name="size" onChange={handleInputChange}/> */}
                                             <input {...getRadioProps("size", item.value )} />
                                             <span className="checkmark">{item.displayValue}</span>
@@ -55,14 +55,14 @@ const AttributesSelector = ({attributes, handleInputChange}) => {
                         break;
                 case 'Color':
                     return (
-                        <label>
+                        <label key={key}>
                             <span className="labelName">
                             {attribute.name}:
                             </span>
                         
                             <div className="attributesValues">
-                                {attribute.items.map((item) => (
-                                    <label className="labelColor" >
+                                {attribute.items.map((item, key) => (
+                                    <label key={key} className="labelColor" >
                                         {/* <input type="radio" value={item.value} name="color" onChange={handleInputChange}/> */}
                                         <input {...getRadioProps("color", item.value )} />
                                         <span className="checkmark" style={{backgroundColor: `${item.value}`}} ></span>
@@ -76,14 +76,14 @@ const AttributesSelector = ({attributes, handleInputChange}) => {
                     break;
                 case 'Capacity':
                         return (
-                            <label>
+                            <label key={key}>
                                 <span className="labelName">
                                 {attribute.name}:
                                 </span>
                                 
                                 <div className="attributesValues">
-                                    {attribute.items.map((item) => (
-                                        <label className="labelSize" >
+                                    {attribute.items.map((item, key) => (
+                                        <label key={key} className="labelSize" >
                                             {/* <input type="radio" value={item.value} name="capacity" onChange={handleInputChange}/> */}
                                             <input {...getRadioProps("capacity", item.value )} />
                                             <span className="checkmark" style={{backgroundColor: `${item.value}`}} > {item.displayValue}</span>
@@ -97,14 +97,14 @@ const AttributesSelector = ({attributes, handleInputChange}) => {
                         break;
                 default:
                     return(
-                        <label>
+                        <label key={key}>
                                 <span className="labelName">
                                 {attribute.name}:
                                 </span>
                                 
                                 <div className="attributesValues">
-                                    {attribute.items.map((item) => (
-                                        <label className="labelSize" >
+                                    {attribute.items.map((item, key) => (
+                                        <label key={key} className="labelSize" >
                                             {/* <input type="radio" value={item.value} name= {attribute.name} onChange={handleInputChange} /> */}
                                             <input {...getRadioProps(attribute.name, item.value )} />
                                             <span className="checkmark" style={{backgroundColor: `${item.value}`}} > {item.displayValue}</span>

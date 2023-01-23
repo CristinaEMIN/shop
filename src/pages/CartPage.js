@@ -1,22 +1,21 @@
-import React from 'react';
+import React from "react";
 import { connect } from 'react-redux';
 import { getCart } from '../components/selectors';
 import { addNewItemToCart } from '../components/thunks';
-
-
-
-
+import CartItem from "../components/CartItem";
 
 
 const CartPage = ({cart, addToCart}) => {
    
-
-
+  
     return(
         <>
-        <h1>CART</h1>
-        <div className="grid-container">
-            {console.log(cart)}
+        <h1 className="cartTitle">Cart</h1>
+        <div className="cart-grid-container">
+            { cart.map( item =>   (
+                    <CartItem productId={item.id} />
+            )) }
+               
         </div>
         
         </>

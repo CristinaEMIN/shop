@@ -85,8 +85,6 @@ const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem}
                if(itemInCart) {
                     item.quantity +=1;
                     increaseQuntity = true ;
-                    console.log("addadaad")
-console.log(item)
                     updateSelectedItem(item)
                 } 
             }) 
@@ -128,10 +126,10 @@ console.log(item)
      
     return(
         <>
-        <div className="productDetails"> 
+        <div className="productDetails #container"> 
             <form className="productDetailsForm" onSubmit={handleAddtoCart} >
                 <ProductFormFields product={product} handleInputChange={handleInputChange} />
-                <Button type="submit" value="Add to cart" />
+                <Button  className="buttonAddToCart" type="submit" value="Add to cart" />
             </form>
             <div className="productDescription">{htmlFrom(product.description)}</div>
         </div>

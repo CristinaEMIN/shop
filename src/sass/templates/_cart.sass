@@ -1,0 +1,87 @@
+/* Cart */
+
+.cartTitle
+    position: absolute
+    width: 84px
+    height: 40px
+    left: 100px
+    top: 160px
+    font-family: 'Raleway'
+    font-style: normal
+    font-weight: 700
+    font-size: 32px
+    line-height: 40px
+    text-transform: uppercase
+    color: #1D1F22
+
+.cart-grid-container
+    position: absolute
+    left: 100px
+    top: 330px
+    width: 100%
+    display: grid
+    grid-template: 330px / auto
+    grid-gap: 10px
+    padding: 10px
+
+    /* Cart Garelly */
+    .productGalleryCart
+        position: relative
+        left: 70%
+        width: 200px
+        height: 330px
+        background-color: white
+
+        .productGalleryMainImg
+            width: auto
+            height: 280px
+            left: 0
+            padding-top: 10px
+
+        .nextImg
+            position: relative
+            bottom: 10%
+            left: 70%
+            background-color: rgba(0, 0, 0, 0.73)
+            width: 24px
+            height: 24px
+            color: #FFFFFF
+            font-size: 18px
+            border: none
+
+        .prevImg
+            position: relative
+            bottom: 10%
+            left: 65%
+            background-color: rgba(0, 0, 0, 0.73)
+            width: 24px
+            height: 24px
+            color: #FFFFFF
+            font-size: 18px
+            border: none
+
+    .productDetails
+        position: absolute
+        left: 100px
+        height: auto
+        .productDetailsForm
+            display: flex
+            flex-flow: column
+            margin-top: 10px
+            margin-bottom: 10px
+            label
+                margin-bottom: 10px
+            .productAttributes
+                order: 2
+                padding: 0 0 20px 0
+                .attributesValues
+                    grid-template-columns: repeat(10, 1fr)
+            .productPrice
+                order: 1
+                .labelName
+                    display: none
+
+        .buttonAddToCart
+            display: none
+        .productDescription
+            display: none

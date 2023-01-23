@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { getCart, getCartQuntity } from '../components/selectors';
 import {ReactComponent as EmptyCart} from '../EmptyCart.svg';
 
@@ -10,32 +11,19 @@ import {ReactComponent as EmptyCart} from '../EmptyCart.svg';
 
 const Cart = ({cart, cartQuntity}) => {
    
-    // let [numberOfItems, updateNumberOfItems] = useState(0);
-    // console.log(numberOfItems)
-    // useEffect(() => {
-    //     let quntityTotal = 0;
-    //     if(cart.length >0){
-            
-    //         quntityTotal = cart.reduce((accumulator, object) => {
-    //             return accumulator + object.quantity;
-    //           }, 0);
-    //     }
-    //     console.log(quntityTotal)
-    //     updateNumberOfItems(quntityTotal);
-      
-    // }, [cart]);
-
-    console.log(cartQuntity)
-
-    
-// console.log(numberOfItems)
     return(
-        (cartQuntity > 0) ? 
-            <>
-                <EmptyCart />
-                <div className='CartNumberItems'>{cartQuntity}</div>
-            </> :
-            <EmptyCart />
+        
+            <NavLink to={`/cart`} className="label">
+        
+                {(cartQuntity > 0) ? 
+                    <>
+                        <EmptyCart />
+                        <div className='CartNumberItems'>{cartQuntity}</div>
+                    </> :
+                    <EmptyCart />
+                    }
+            </NavLink>
+       
     );
 }
 

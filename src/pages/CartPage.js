@@ -1,11 +1,11 @@
 import {useState } from "react";
 import { connect } from 'react-redux';
-import { getCart, getCartQuntity, getCartTotal} from '../components/selectors';
+import { getCart, getCartQuntity, getCartTotal, getCurrencies, getCurrenciesSelectedIndex} from '../components/selectors';
 import { addNewItemToCart } from '../components/thunks';
 import CartItem from "../components/CartItem";
 
 
-const CartPage = ({cart, cartQuntity, cartTotalPrice, addToCart}) => {
+const CartPage = ({cart, cartQuntity, cartTotalPrice, currencies, currencieSelectedIndex}) => {
    
     
 
@@ -22,13 +22,24 @@ const CartPage = ({cart, cartQuntity, cartTotalPrice, addToCart}) => {
                     console.log(productAttributes)
                    return  <CartItem productId={item.id} />
             }) }
-               
+
+              <div className="cartOrderArea">
+                <div className="cartSummary">
+                    <div className="cartSummaryItem" ><span className="cartSummaryItemName cartTax">Tax 21%: </span>
+                                            <span className="cartSummaryValue">{currencies.currencies[currencieSelectedIndex].symbol}{ cartTotalPrice/100 *21}</span> 
+                            </div>
+                    <div className="cartSummaryItem"> <span className=" cartSummaryItemName cartQuantity">Quantity: </span>
+                                    <span className="cartSummaryValue">{cartQuntity}
+                                        </span></div>
+                    <div className="cartSummaryItem"><span className=" cartSummaryItemName cartTotal">Total: </span>
+                    <span className="cartSummaryValue">{currencies.currencies[currencieSelectedIndex].symbol}{ cartTotalPrice}
+                        </span></div>
+                </div>
+                <button className="placeOrderButton">Order</button>
+            </div> 
+          
         </div>
-        <div>
-            <h3 className="cartTax">Tax 21%: { cartTotalPrice/100 *21}</h3>
-            <h3 className="cartQuantity">Qunatity: {cartQuntity}</h3>
-            <h3 className="cartTotal">Total:{ cartTotalPrice}</h3>
-        </div>
+       
         
         </>
     );
@@ -38,7 +49,9 @@ const CartPage = ({cart, cartQuntity, cartTotalPrice, addToCart}) => {
 const mapStateToProps = state => ({
     cart: getCart(state),
     cartQuntity: getCartQuntity(state),
-    cartTotalPrice: getCartTotal(state)
+    cartTotalPrice: getCartTotal(state),
+    currencies: getCurrencies(state),
+    currencieSelectedIndex: getCurrenciesSelectedIndex(state),
    
 });
 

@@ -1,6 +1,6 @@
 import { useEffect, useCallback, useState, Suspense } from "react";
 import { connect } from 'react-redux';
-// import { useQuery, gql } from "@apollo/client";
+
 import {
   getCurrencies,
   getCurrenciesLoading,
@@ -11,14 +11,7 @@ import {
   selectCurrencyIndex,
 } from './thunks';
 
-// const CURRENCY_QUERY = gql`
-// {
-//   currencies{
-//       label, 
-//     	symbol
-//       }   
-// }
-// `;
+
 
 
 const CurencyCodePicked = ({currencies, isLoading, currencieSelectedIndex, startLoadingCurrencies, selectNewCurrency }) => {
@@ -26,7 +19,7 @@ const CurencyCodePicked = ({currencies, isLoading, currencieSelectedIndex, start
   useEffect(() => {
     startLoadingCurrencies();
   }, []);
-  // const [currencyCode, setCurrencyCode] = useState();
+ 
 
 const loadingMessage = <div>Loading currencie...</div>;
 

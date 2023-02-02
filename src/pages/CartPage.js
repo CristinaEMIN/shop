@@ -20,19 +20,19 @@ const CartPage = ({cart, cartQuntity, cartTotalPrice, currencies, currencieSelec
                     let exclude = new Set(["id","cartId","quantity"]);
                     let productAttributes = Object.fromEntries(Object.entries(item).filter(e => !exclude.has(e[0])));
                     console.log(productAttributes)
-                   return  <CartItem productId={item.id} />
+                   return  <CartItem productId={item.id} attributesSelected={item.attributes} />
             }) }
 
               <div className="cartOrderArea">
                 <div className="cartSummary">
                     <div className="cartSummaryItem" ><span className="cartSummaryItemName cartTax">Tax 21%: </span>
-                                            <span className="cartSummaryValue">{currencies.currencies[currencieSelectedIndex].symbol}{ cartTotalPrice/100 *21}</span> 
+                                            <span className="cartSummaryValue">{currencies.currencies[currencieSelectedIndex].symbol}{ ( cartTotalPrice/100 *21).toFixed(2)}</span> 
                             </div>
                     <div className="cartSummaryItem"> <span className=" cartSummaryItemName cartQuantity">Quantity: </span>
                                     <span className="cartSummaryValue">{cartQuntity}
                                         </span></div>
                     <div className="cartSummaryItem"><span className=" cartSummaryItemName cartTotal">Total: </span>
-                    <span className="cartSummaryValue">{currencies.currencies[currencieSelectedIndex].symbol}{ cartTotalPrice}
+                    <span className="cartSummaryValue">{currencies.currencies[currencieSelectedIndex].symbol}{ cartTotalPrice.toFixed(2)}
                         </span></div>
                 </div>
                 <button className="placeOrderButton">Order</button>

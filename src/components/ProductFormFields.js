@@ -4,7 +4,7 @@ import PriceFormat from "./PriceFormat";
 
 
 
-const ProductFormFields = ({product, handleInputChange, getRadioProps}) => {
+const ProductFormFields = ({product, handleInputChange, handleChange, stateChecked,attributesSelected}) => {
 
   
     
@@ -26,7 +26,7 @@ const ProductFormFields = ({product, handleInputChange, getRadioProps}) => {
             </label>
     
         
-            <AttributesSelector attributes={product.attributes} handleInputChange={handleInputChange} />
+            <AttributesSelector attributes={product.attributes} handleInputChange={handleInputChange} handleChange={handleChange} stateChecked={stateChecked} attributesSelected={attributesSelected} />
 
            
             <PriceFormat prices={product.prices}/>

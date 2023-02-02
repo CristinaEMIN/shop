@@ -7,6 +7,7 @@ const ProductCartWrapper = styled.nav`
     position: relative;
     display: block;
     border-top: 1px solid #E5E5E5;
+    left: 100px
 `;
 
 const PRODUCT_QUERY = gql`
@@ -69,7 +70,7 @@ fragment CurrentProduct on Product{
 
 
 
-const CartItem = ({productId}) => {
+const CartItem = ({productId, attributesSelected}) => {
    
     const [fetchedProducts, setFetchedProducts] = useState(false);
     const client = useApolloClient();
@@ -100,7 +101,7 @@ const CartItem = ({productId}) => {
 
     return(
         <ProductCartWrapper>
-            <ProductDescriptionCart product={product} /> 
+            <ProductDescriptionCart product={product} attributesSelected={attributesSelected}/> 
         </ProductCartWrapper>
         
     )

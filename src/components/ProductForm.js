@@ -50,7 +50,7 @@ const Alert = styled(Info)`
 
 
 
-const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem}) => {
+const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem, attributesSelected}) => {
 
     const htmlFrom = (htmlString) => {
         const cleanHtmlString = DOMPurify.sanitize(htmlString,
@@ -71,6 +71,8 @@ const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem}
         return message[type];
       };
 
+      const reducerState = (stateChecked, action) => ({ ...stateChecked, ...action });
+      const [stateChecked, setState] = useReducer(reducerState, []);
 
     //current product attributes
     const reducer = (state, action) => {
@@ -91,11 +93,40 @@ const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem}
     };
     const [attributesOfSelectedProduct, dispatch] = useReducer(reducer, initialState);
 
- 
-    // handle add to cart event
+
+   
+
+    //handle attribute input change  
+    const handleInputChange = useCallback(
+        (e) => {
+            
+            const { name, value  } = e.target;
+            // e.target.nextSibling.style.backgroundColor = "black" 
+            dispatch({ type: name, value });
+        },
+        []
+      );
+
+      
+      const handleChange = useCallback(
+          (e) => {
+              console.log(e)
+              const { name, value } = e.target;
+              setState({
+              ...stateChecked,
+              [name]: value,
+              });
+          },
+          []
+        );
+
+         // handle add to cart event
     const handleAddtoCart = e => {
         e.preventDefault();
-
+         /* clear state */
+        setState(Object.keys(stateChecked).forEach(key => {
+            stateChecked[key] = null;
+          }));
         //send alert if not all attributes were selected
        if (Object.keys(attributesOfSelectedProduct.attributes).length != product.attributes.length ){
         setInfoMessage("alert");
@@ -145,6 +176,7 @@ const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem}
             addToCart(attributesOfSelectedProduct)
             setInfoMessage("success");
             e.target.reset();
+            console.log(stateChecked);
             setTimeout(()=>{
                 setInfoMessage('')}
                 , 3000);
@@ -155,24 +187,15 @@ const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem}
         /* clear state */
         dispatch({ type: "reset" });
       };
-  
+      console.log(stateChecked);
       console.log(cart)
-
-    //handle attribute input change  
-    const handleInputChange = useCallback(
-        (e) => {
-            const { name, value  } = e.target;
-            dispatch({ type: name, value });
-        },
-        []
-      );
-     console.log(product);
+    
     return(
         <>
         <div className="productDetails #container"> 
         
             <form className="productDetailsForm" onSubmit={handleAddtoCart} >
-                <ProductFormFields product={product} handleInputChange={handleInputChange} />
+                <ProductFormFields product={product} handleInputChange={handleInputChange} handleChange={handleChange} stateChecked={stateChecked} attributesSelected={attributesSelected} />
                 <Button  className="buttonAddToCart" type="submit" value="Add to cart" />
             </form>
             <div className="infoMessage">

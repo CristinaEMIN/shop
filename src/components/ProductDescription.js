@@ -12,7 +12,7 @@ const ProductDescription = ({product}) => {
     return(
         <>
             <ProductGallery gallery={product.gallery} />
-            <ProductForm product={product} />
+            <ProductForm product={product} attributesSelected={[]} />
         </>
     );
 

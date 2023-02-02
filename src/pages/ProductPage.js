@@ -117,7 +117,7 @@ if(!fetchedProducts){
 
     return(
         <ProductDescriptionWrapper>
-             <ProductDescription product={product} /> 
+             <ProductDescription product={product}/> 
         </ProductDescriptionWrapper>
         
     );

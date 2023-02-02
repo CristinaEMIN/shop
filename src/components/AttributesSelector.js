@@ -1,28 +1,26 @@
-import {useState, useCallback, useEffect, useRef} from "react";
+import {useReducer, useCallback, useEffect, useRef} from "react";
 
 
-const AttributesSelector = ({attributes, handleInputChange}) => {
+const AttributesSelector = ({attributes, handleInputChange, handleChange, stateChecked, attributesSelected}) => {
 
-    const checkboxRef = useRef();
+   
+    
+    
 
-    const getRadioProps = useCallback(( name, value) => {
+    const getRadioProps = useCallback(( name, value, attributesSelected, stateChecked ) => {
         return {
           name,
           value,
           type: "radio",
-        //   ref: checkboxRef,
-          onClick: handleInputChange,
-                           
-
+          onClick:  handleInputChange,
+          onChange:   handleChange, 
+          checked: (typeof attributesSelected[name] !== 'undefined' && attributesSelected[name] == value) ? true : (typeof stateChecked[name] !== 'undefined' && stateChecked[name] == value ? true : false) , 
         };
       }, []);
 
 
-    // useEffect(() => {
-    //         if (checkboxRef) {
-    //             checkboxRef.current.addEventListener('click', handleInputChange, false);
-    //         }
-    //     }, []);
+   
+    
     
 
     return(
@@ -41,7 +39,7 @@ const AttributesSelector = ({attributes, handleInputChange}) => {
                                     {attribute.items.map((item, key) => (
                                         <label key={key} className="labelSize">
                                             {/* <input type="radio" value={item.value} name="size" onChange={handleInputChange}/> */}
-                                            <input {...getRadioProps("size", item.value )} />
+                                            <input {...getRadioProps("size", item.value, attributesSelected, stateChecked  )} />
                                             <span className="checkmark">{item.displayValue}</span>
                                         </label>
                                         
@@ -64,7 +62,7 @@ const AttributesSelector = ({attributes, handleInputChange}) => {
                                 {attribute.items.map((item, key) => (
                                     <label key={key} className="labelColor" >
                                         {/* <input type="radio" value={item.value} name="color" onChange={handleInputChange}/> */}
-                                        <input {...getRadioProps("color", item.value )} />
+                                        <input {...getRadioProps("color", item.value, attributesSelected, stateChecked  )} />
                                         <span className="checkmark" style={{backgroundColor: `${item.value}`}} ></span>
                                     </label>
                                 ))}
@@ -85,7 +83,7 @@ const AttributesSelector = ({attributes, handleInputChange}) => {
                                     {attribute.items.map((item, key) => (
                                         <label key={key} className="labelSize" >
                                             {/* <input type="radio" value={item.value} name="capacity" onChange={handleInputChange}/> */}
-                                            <input {...getRadioProps("capacity", item.value )} />
+                                            <input {...getRadioProps("capacity", item.value, attributesSelected, stateChecked  )} />
                                             <span className="checkmark" style={{backgroundColor: `${item.value}`}} > {item.displayValue}</span>
                                         </label>
                                     ))}
@@ -106,7 +104,7 @@ const AttributesSelector = ({attributes, handleInputChange}) => {
                                     {attribute.items.map((item, key) => (
                                         <label key={key} className="labelSize" >
                                             {/* <input type="radio" value={item.value} name= {attribute.name} onChange={handleInputChange} /> */}
-                                            <input {...getRadioProps(attribute.name, item.value )} />
+                                            <input {...getRadioProps(attribute.name, item.value, attributesSelected, stateChecked  )} />
                                             <span className="checkmark" style={{backgroundColor: `${item.value}`}} > {item.displayValue}</span>
                                         </label>
                                     ))}

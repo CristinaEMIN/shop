@@ -5,13 +5,13 @@ import ProductForm from "./ProductForm";
 
 
 
-const ProductDescriptionCart = ({product, attributesSelected }) => {
+const ProductDescriptionCart = ({product, item }) => {
 
  
 
     return(
         <>
-            <ProductForm product={product} attributesSelected={attributesSelected} />
+            <ProductForm product={product} item={item} />
             <ProductGalleryCart gallery={product.gallery} />
             
         </>

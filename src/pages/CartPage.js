@@ -15,12 +15,12 @@ const CartPage = ({cart, cartQuntity, cartTotalPrice, currencies, currencieSelec
     return(
         <>
         <h1 className="cartTitle">Cart</h1>
-        <div className="cart-grid-container">
+        { cartQuntity ? <div className="cart-grid-container">
             { cart.map( item =>   {
-                    let exclude = new Set(["id","cartId","quantity"]);
-                    let productAttributes = Object.fromEntries(Object.entries(item).filter(e => !exclude.has(e[0])));
-                    console.log(productAttributes)
-                   return  <CartItem productId={item.id} attributesSelected={item.attributes} />
+                    // let exclude = new Set(["id","cartId","quantity"]);
+                    // let productAttributes = Object.fromEntries(Object.entries(item).filter(e => !exclude.has(e[0])));
+                    // console.log(productAttributes)
+                   return  <CartItem item={item} />
             }) }
 
               <div className="cartOrderArea">
@@ -38,7 +38,8 @@ const CartPage = ({cart, cartQuntity, cartTotalPrice, currencies, currencieSelec
                 <button className="placeOrderButton">Order</button>
             </div> 
           
-        </div>
+        </div> : <></>}
+        
        
         
         </>

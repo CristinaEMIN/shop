@@ -70,10 +70,12 @@ fragment CurrentProduct on Product{
 
 
 
-const CartItem = ({productId, attributesSelected}) => {
+const CartItem = ({item}) => {
    
     const [fetchedProducts, setFetchedProducts] = useState(false);
     const client = useApolloClient();
+
+    const productId = item.id;
                
     let product = client.readFragment({
         id: `Product:`+productId,
@@ -101,7 +103,7 @@ const CartItem = ({productId, attributesSelected}) => {
 
     return(
         <ProductCartWrapper>
-            <ProductDescriptionCart product={product} attributesSelected={attributesSelected}/> 
+            <ProductDescriptionCart product={product} item={item}/> 
         </ProductCartWrapper>
         
     )

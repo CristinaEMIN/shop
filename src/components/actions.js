@@ -19,7 +19,11 @@ export const addToCart = item => ({
     type: ADD_TO_CART,
     payload: { item },
 });
-
+export const REMOVE_ITEM = 'REMOVE_ITEM ';
+export const removeItem = item => ({
+    type: REMOVE_ITEM ,
+    payload: { item },
+});
 export const UPDATE_ITEM_IN_CART = 'UPDATE_ITEM_IN_CART';
 export const updateItemInCart = item => ({
     type: UPDATE_ITEM_IN_CART,

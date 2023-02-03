@@ -1,5 +1,6 @@
 import {useCallback, useReducer, useState, useEffect} from "react";
 import { connect } from 'react-redux';
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import parse from 'html-react-parser';
 import DOMPurify from 'dompurify';
@@ -28,6 +29,22 @@ const Button = styled.input`
 
 `;
 
+const ButtonQuantity = styled.button`
+    /* _Button / Elements / Common */
+    box-sizing: border-box;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    
+    background-color: transparent;
+    border: 1px solid #1D1F22;
+    
+    
+
+`;
+
+
+
 const Info = styled.div`
     border: 1px solid rgba(36, 241, 6, 0.46);
     background-color: rgba(7, 149, 66, 0.12156862745098039);
@@ -50,7 +67,14 @@ const Alert = styled(Info)`
 
 
 
-const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem, attributesSelected}) => {
+const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem, item}) => {
+
+    const attributesSelected = item.attributes ? item.attributes : {};
+
+    let params = useParams();
+    const categoryname = params.categoryname;
+    console.log(categoryname)
+    
 
     const htmlFrom = (htmlString) => {
         const cleanHtmlString = DOMPurify.sanitize(htmlString,
@@ -71,6 +95,7 @@ const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem,
         return message[type];
       };
 
+      //current checked radio attributes
       const reducerState = (stateChecked, action) => ({ ...stateChecked, ...action });
       const [stateChecked, setState] = useReducer(reducerState, []);
 
@@ -101,26 +126,31 @@ const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem,
         (e) => {
             
             const { name, value  } = e.target;
-            // e.target.nextSibling.style.backgroundColor = "black" 
             dispatch({ type: name, value });
         },
         []
       );
 
-      
+    //handle radio button checked
       const handleChange = useCallback(
           (e) => {
+            console.log("ce  mai turavura")
               console.log(e)
               const { name, value } = e.target;
               setState({
               ...stateChecked,
               [name]: value,
               });
+              if (typeof item.attributes !== "undefined" ) {
+                console.log(item)
+                item.attributes[name] = value;
+                updateSelectedItem(item);
+              } 
           },
           []
         );
 
-         // handle add to cart event
+    // handle add to cart event
     const handleAddtoCart = e => {
         e.preventDefault();
          /* clear state */
@@ -189,6 +219,25 @@ const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem,
       };
       console.log(stateChecked);
       console.log(cart)
+
+     
+    const handleItemUpdate =useCallback( (item, currentaction) => {
+            console.log(currentaction)
+
+        if (currentaction === "increase") {
+                item.quantity +=1; 
+                updateSelectedItem(item);
+                console.log(cart)
+        }
+
+        if (currentaction === "decrease") {
+            item.quantity -=1; 
+            updateSelectedItem(item);
+            console.log(cart)
+    }
+   
+        
+    }, []);
     
     return(
         <>
@@ -198,10 +247,24 @@ const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem,
                 <ProductFormFields product={product} handleInputChange={handleInputChange} handleChange={handleChange} stateChecked={stateChecked} attributesSelected={attributesSelected} />
                 <Button  className="buttonAddToCart" type="submit" value="Add to cart" />
             </form>
-            <div className="infoMessage">
-                 {renderMessage(infoMessage)}
-            </div>
-            <div className="productDescription">{htmlFrom(product.description)}</div>
+
+            {typeof categoryname === 'undefined' ? 
+            
+                        <div className="adjustQuntity">
+                        <ButtonQuantity className="buttonIncreaseQuantity" onClick={()=>handleItemUpdate(item, "increase")} />
+                        <div className="itemQuntity">{item.quantity} </div>
+                        <ButtonQuantity  className="buttonDecreaseQuantity" onClick={()=>handleItemUpdate(item, "decrease")} />
+                        </div> : 
+                        <>
+                        <div className="infoMessage">
+                            {renderMessage(infoMessage)}
+                        </div>
+                        <div className="productDescription">{htmlFrom(product.description)}</div>
+                        </>
+            }
+            
+            
+            
         </div>
             
 

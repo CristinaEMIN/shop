@@ -3,6 +3,7 @@ import {
     LOAD_CART_SUCCESS,
     LOAD_CART_FAILURE,
     ADD_TO_CART,
+    REMOVE_ITEM,
     UPDATE_ITEM_IN_CART,
     LOAD_CURRENCIES_IN_PROGRESS,
     LOAD_CURRENCIES_SUCCESS,
@@ -40,6 +41,13 @@ export const cart = (state = initialState, action) => {
             ...state,
             isLoading: false,
             data:  state.data.concat(item),
+        };
+    }
+    case REMOVE_ITEM: {
+        const { item: itemToRemove } = payload;
+        return {
+            ...state,
+            data: state.data.filter(item => item.cartId !== itemToRemove.cartId),
         };
     }
     case UPDATE_ITEM_IN_CART: {

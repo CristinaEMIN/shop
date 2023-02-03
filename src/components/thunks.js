@@ -3,6 +3,7 @@ import {
     loadCartSuccess,
     loadCartFailure,
     addToCart,
+    removeItem,
     updateItemInCart,
     loadCurrenciesInProgress,
     loadCurrenciesSuccess,
@@ -39,7 +40,19 @@ export const addNewItemToCart = item => async dispatch => {
 
 export const updateItem = item => async dispatch => {
     try {
-        dispatch(updateItemInCart(item));
+        if(item.quantity === 0){ dispatch(removeCurrentItem(item))} 
+        else dispatch(updateItemInCart(item));
+        
+    
+    } catch (e) {
+        dispatch(loadCartFailure());
+        dispatch(displayAlert(e));
+    }
+}
+
+export const removeCurrentItem = item => async dispatch => {
+    try {
+        dispatch(removeItem(item));
     
     } catch (e) {
         dispatch(loadCartFailure());

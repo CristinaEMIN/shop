@@ -250,9 +250,9 @@ const ProductForm = ({product, cart, addToCart, cartQuntity, updateSelectedItem,
 
             {typeof categoryname === 'undefined' ? 
             
-                        <div className="adjustQuntity">
+                        <div className="adjustQuantity">
                         <ButtonQuantity className="buttonIncreaseQuantity" onClick={()=>handleItemUpdate(item, "increase")} />
-                        <div className="itemQuntity">{item.quantity} </div>
+                        <div className="itemQuantity">{item.quantity} </div>
                         <ButtonQuantity  className="buttonDecreaseQuantity" onClick={()=>handleItemUpdate(item, "decrease")} />
                         </div> : 
                         <>

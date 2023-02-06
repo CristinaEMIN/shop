@@ -1,0 +1,169 @@
+.overlay__background
+    background-color: rgba(0, 0, 0, 0.3)
+    width: 100vw
+    height: 100vh
+    position: fixed
+    top: 100px
+    left: 0
+    cursor: pointer
+    z-index: 9
+
+.overlay__container
+
+    position: fixed
+    top: 0
+    right: 70px
+    padding-top: 80px
+    margin: auto
+    z-index: 10
+
+    width: 350px
+
+    .cartPage
+        // position: fixed
+        background-color: white
+
+        top: 100px
+        width: 350px
+
+        .cartTitle
+            display: none
+
+        .cartInfo
+            position: relative
+            display: block
+            padding: 40px 0 0 20px
+            width: 118px
+            height: 26px
+            font-family: 'Raleway'
+            font-style: normal
+            font-weight: 500
+            font-size: 16px
+            line-height: 160%
+            text-align: right
+            color: #1D1F22
+
+            span
+                font-weight: 700
+
+        .cart-grid-container
+            position: relative
+            background-color: white
+            left: 0
+            top: 30px
+
+            nav
+                left: 20px
+                border: none
+                height: auto
+
+            .productDetails
+                width: 40%
+
+                .productDetailsForm
+                    margin-top: 0
+                    margin-bottom: 0
+
+                    label
+                        font-size: 16px
+                        font-weight: 500
+                    .productBrand
+                        display: none
+                    .productName
+                        padding-top: 0
+                        width: 130px
+                        height: auto
+                    .productPrice .price
+                        padding-top: 4px
+                        height: 26px
+                    .productAttributes
+                        width: 136px
+                        label span
+                            font-size: 16px
+                            text-transform: capitalize
+                            font-weight: 500
+                        .attributesValues
+                            display: flex
+                            flex-direction: row
+                            flex-wrap: wrap
+                            gap: 2px
+                            label span
+                                font-size: 16px
+                .adjustQuantity
+                    margin: 0 0 10px 15px
+                    .itemQuantity
+                        font-size: 16px
+                        right: 10px
+                        top: 45%
+
+                    button
+                        width: 24px
+                        height: 24px
+                        &::after
+                            font-size: 30px
+                            left: 6px
+                            top: -12px
+
+            .productGalleryCart
+                left: 50%
+                height: auto
+
+                .productGalleryMainImg
+                    padding-top: 0
+                    height: auto
+                    max-width: 120px
+                button
+                    display: none
+
+            .cartOrderArea
+                left: 20px
+                border: none
+
+                .cartSummary
+                    height: 35px
+                    .cartTax
+                        display: none
+                    .cartQuantity
+                        display: none
+                    .cartTotal
+                        display: none
+                    .cartSummaryItem::after
+                        content: "Total"
+                        font-weight: 700
+                    .cartSummaryValue
+                        display: block
+                        float: left
+                        width: 100%
+                .cartButtons
+                    display: inline-flex
+                    a:link
+                        text-decoration: none!important
+                    .viewBagButton
+                        display: block
+                        box-sizing: border-box
+                        display: flex
+                        flex-direction: column
+                        justify-content: center
+                        align-items: center
+                        padding: 16px 32px
+                        width: 140px
+                        height: 43px
+                        background: #FFFFFF
+                        border: 1px solid #1D1F22
+                        text-transform: uppercase
+                        order: 1
+
+                    .placeOrderButton
+                        flex-direction: column
+                        margin-left: 20px
+                        padding: 16px 32px
+                        width: 140px
+                        height: 43px
+                        order: 2
+                        span
+                            display: none
+                        &::after
+                            content: "CHECK OUT"
+                            width: 140px
+                            justify-content: center
+                            align-items: center

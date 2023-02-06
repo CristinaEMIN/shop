@@ -37,8 +37,12 @@ const ProductGalleryCart = ({ gallery }) => {
 return(
     <div className="productGalleryCart">
         <img src={gallery[mainImageIndex]} className="productGalleryMainImg" />
-        <button className="prevImg" onClick={onClickPrevious}> &lsaquo; </button>
-        <button className="nextImg" onClick={onClickNext}> &rsaquo; </button>
+        { console.log(gallery.length)}
+        {gallery.length > 1 ? <> 
+                                <button className="prevImg" onClick={onClickPrevious}> &lsaquo; </button>
+                                <button className="nextImg" onClick={onClickNext}> &rsaquo; </button>
+                            </> : <></> }
+        
 
         {/* <div className="ProductImageGallery">
             {gallery.map((productimage , key) => (
